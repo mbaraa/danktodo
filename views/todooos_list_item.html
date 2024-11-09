@@ -1,0 +1,66 @@
+<li
+  tabindex="0"
+  hx-trigger="click, keydown[key==' '||key=='Enter']"
+  hx-put='/api/todos/toggle?id=<tmpl_var name="todo_id">'
+  hx-swap="outerHTML"
+  hx-target="this"
+  id='todo-<tmpl_var name="todo_id">'
+  class="flex items-center select-none bg-white border-2 border-neutral-700 border-r-neutral-200 border-b-neutral-200 [&.htmx-request]:bg-neutral-300 hover:bg-neutral-100 p-2 px-4 relative font-mono"
+>
+  <style>
+    li:not(.htmx-request) .todo-spinner:not(.htmx-request) {
+      display: none;
+    }
+  </style>
+  <svg
+    class='grow-0 w-5 h-5 mr-2 transition-all cursor-pointer hover:scale-110 active:scale-90
+          <tmpl_if name="todo_done" value="true">
+          text-green-500 dark:text-green-700
+          <tmpl_else>
+          text-gray-500 dark:text-gray-400
+          </tmpl_if>
+          flex-shrink-0'
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+  >
+    <path
+      d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"
+    />
+  </svg>
+
+  <div class="todo-spinner absolute w-full h-full flex place-content-center items-center" style>
+    <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        .spinner_ajPY {
+          transform-origin: center;
+          animation: spinner_AtaB 0.75s infinite linear;
+        }
+        @keyframes spinner_AtaB {
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      </style>
+      <path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25" />
+      <path
+        d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z"
+        class="spinner_ajPY"
+      />
+    </svg>
+  </div>
+
+  <span class='grow <tmpl_if name="todo_done" value="true">line-through</tmpl_if>'><tmpl_var name="todo_title"></span>
+  <button
+    class="mr-2 text-lg transition-all cursor-pointer hover:scale-110 active:scale-90 grow-0"
+    title="Remove task"
+    hx-trigger="click consume"
+    hx-delete='/api/todos?id=<tmpl_var name="todo_id">'
+    hx-indicator="previous .todo-spinner"
+    hx-confirm='Are your sure you want to delete the task "<tmpl_var name="todo_title">" ?'
+  >
+    ❌
+  </button>
+</li>
+

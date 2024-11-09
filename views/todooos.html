@@ -1,0 +1,90 @@
+<div
+  id="container"
+  class="max-w-xl bg-[#c3c3c3] m-2 p-2 space-y-2 border-neutral-100 border-2 border-r-neutral-700 border-b-neutral-700 mx-auto"
+>
+  <div class="upper-controls flex justify-between">
+    <button
+      hx-post="/api/logout"
+      class="items-center block w-max active:bg-[rgb(150,150,150)] hover:bg-[rgb(170,170,170)] active:border-neutral-700 active:border-r-neutral-100 active:border-b-neutral-100 px-2 py-1 border-2 border-neutral-100 border-r-neutral-700 border-b-neutral-700 bg-[rgb(204,204,204)] font-bold font-mono text-xs"
+    >
+      <img
+        class="inline-block h-4"
+        style="image-rendering: pixelated"
+        src="/assets/icons/exit.gif"
+        alt="exit"
+      />
+      Logout
+    </button>
+
+    <button
+      hx-get="/user/settings"
+      hx-push-url="true"
+      hx-target="#container"
+      hx-swap="outerHTML"
+      class="items-center block w-max active:bg-[rgb(150,150,150)] hover:bg-[rgb(170,170,170)] active:border-neutral-700 active:border-r-neutral-100 active:border-b-neutral-100 px-2 py-1 border-2 border-neutral-100 border-r-neutral-700 border-b-neutral-700 bg-[rgb(204,204,204)] font-bold font-mono text-xs"
+      title="Your very own settings page !"
+    >
+      <img
+        class="inline-block h-4"
+        style="image-rendering: pixelated"
+        src="/assets/icons/crescentwrench.gif"
+        alt="settings icon"
+      />
+      Settings
+    </button>
+  </div>
+
+  <h1
+    class="text-xl text-white font-mono font-bold p-1 px-2"
+    style="background: radial-gradient(#04029b, #050369)"
+  >
+    Welcome <span class="italic"><tmpl_var name="username"></span> 👋
+  </h1>
+
+  <form
+    hx-post="/api/todos"
+    hx-on::after-request="this.reset()"
+    hx-target="#todooos ul"
+    hx-swap="afterbegin"
+    hx-indicator="#todo-add-spinner"
+    class="mb-5 flex flex-col gap-2"
+  >
+    <div class="flex gap-3 flex-wrap items-center">
+      <input
+        type="text"
+        id="todo-title"
+        name="todo-title"
+        class="block grow-[6] p-2 text-gray-900 border-2 border-sky-500 px-2 py-1 font-mono"
+        minlength="4"
+        required
+        placeholder="Your next task..."
+      />
+      <button
+        class="flex items-center gap-2 active:bg-[rgb(150,150,150)] hover:bg-[rgb(170,170,170)] px-2 py-1 border-2 border-neutral-100 border-r-neutral-700 border-b-neutral-700 active:border-neutral-700 active:border-r-neutral-100 active:border-b-neutral-100 bg-[rgb(204,204,204)] font-bold font-mono"
+        type="submit"
+      >
+        <img
+          class="inline-block h-6"
+          style="image-rendering: pixelated"
+          src="/assets/icons/starsg.gif"
+          alt="coffee"
+        />
+        Add Todo
+      </button>
+      <!-- TODO: add a "clear all" button -->
+      <!-- TODO: add a "clear completed" button -->
+      <!-- TODO: add a "toggle all" button -->
+      <!-- TODO: add a "filter" button -->
+      <!-- TODO: add a "sort" button -->
+      <!-- TODO: add a "search" button -->
+      <!-- TODO: add a "settings" button -->
+      <!-- TODO: add a "help" button -->
+      <!-- TODO: add a "about" button -->
+      <!-- TODO: add a "donate" button -->
+      <!-- TODO: add a "contact" button -->
+    </div>
+  </form>
+
+  <!-- this element will get replaced by HTMX when we submit our form -->
+  <tmpl_var name="todooos_list">
+</div>

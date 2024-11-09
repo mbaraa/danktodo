@@ -1,0 +1,62 @@
+<form hx-post="/api/register" hx-swap="outerHTML" hx-target="this" class="w-full space-y-2">
+  <tmpl_if name="success" value="">
+  <tmpl_else>
+    <tmpl_var name="success">
+  </tmpl_if>
+  <tmpl_if name="error" value="">
+  <tmpl_else>
+    <tmpl_var name="error">
+  </tmpl_if>
+  <div>
+    <label class="block" for="username"> Username: </label>
+    <input
+      class="w-full border-2 border-sky-500 px-2 py-1 font-mono"
+      type="text"
+      name="username"
+      id="username"
+      value='<tmpl_var name="username">'
+      placeholder="Your own unique username !"
+      minlength="4"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="password">Password: </label>
+    <input
+      class="w-full border-2 border-sky-500 px-2 py-1 font-mono"
+      type="password"
+      name="password"
+      id="password"
+      placeholder="Please make it hard"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="password">Password (confirm): </label>
+    <input
+      class="w-full border-2 border-sky-500 px-2 py-1 font-mono"
+      type="password"
+      name="password-confirm"
+      id="password-confirm"
+      placeholder="(twice.)"
+      required
+    />
+  </div>
+
+  <button
+    class="my-2 flex items-center gap-2 active:bg-[rgb(150,150,150)] hover:bg-[rgb(170,170,170)]
+    active:border-neutral-700 active:border-r-neutral-100 active:border-b-neutral-100
+    px-2 py-1 border-2 border-neutral-100 border-r-neutral-700 border-b-neutral-700 bg-[rgb(204,204,204)] font-bold font-mono"
+    type="submit"
+  >
+    <img
+      class="inline-block h-4"
+      style="image-rendering: pixelated"
+      src="/assets/icons/starsg.gif"
+      alt="coffee"
+    />
+    Register
+  </button>
+</form>

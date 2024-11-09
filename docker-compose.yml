@@ -1,0 +1,15 @@
+services:
+  app:
+    container_name: "todooo"
+    build:
+      context: .
+    image: "todooo-app"
+    restart: "always"
+    ports:
+      - "20260:8080"
+    stdin_open: true
+    volumes:
+      - ./:/opt/todooo/data
+    environment:
+      - VERSION=${COMMIT_SHA}
+    env_file: .env.docker

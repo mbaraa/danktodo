@@ -1,0 +1,49 @@
+<section id="todooos">
+  <style>
+    :not(.htmx-request) #todo-add-spinner:not(.htmx-request) {
+      display: none;
+    }
+  </style>
+  <div
+    id="todo-add-spinner"
+    class="flex place-content-center select-none bg-neutral-100 border-2 border-neutral-700 border-r-neutral-200 border-b-neutral-200 hover:bg-neutral-200 p-2 px-4 my-2"
+  >
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <style>
+        .spinner_ajPY {
+          transform-origin: center;
+          animation: spinner_AtaB 0.75s infinite linear;
+        }
+        @keyframes spinner_AtaB {
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+      </style>
+      <path
+        d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"
+        opacity=".25"
+      />
+      <path
+        d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z"
+        class="spinner_ajPY"
+      />
+    </svg>
+  </div>
+  <ul class="space-y-2">
+    <tmpl_var name="todoooos">
+    <style>
+      li ~ #todo-empty {
+        display: none;
+      }
+    </style>
+    <p id="todo-empty" class="text-black/40 text-sm w-full text-center">
+      Nothing to see here 🕳
+    </p>
+  </ul>
+</section>

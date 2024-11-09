@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+        C Todooo<tmpl_if name="title" value=""><tmpl_else> - <tmpl_var name="title"></tmpl_if>
+    </title>
+    <link rel="shortcut icon" href="/assets/icons/favicon.png" type="image/x-icon" />
+    <script src="/assets/js/htmx/htmx.min.js"></script>
+    <script defer src="/assets/js/htmx/loading-states.js"></script>
+    <link href="/assets/css/tailwind.css" rel="stylesheet" />
+  </head>
+  <body
+    style="
+      background-image: url(&quot;/assets/imgs/live_bg.gif&quot;),
+        url(&quot;/assets/imgs/bg.webp&quot;),
+        linear-gradient(to right, black, purple);
+      background-repeat: repeat;
+      padding: 0px;
+      margin: 0px;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100dvh;
+    "
+  >
+    <div class="mx-auto px-2 container" hx-boost="true" id="app">
+      <header class="flex items-center gap-2 justify-center my-3">
+        <img
+          class="block h-10"
+          style="image-rendering: pixelated"
+          src="/assets/icons/cuppa0e.gif"
+          alt="coffee"
+        />
+        <marquee
+          class="max-w-lg text-6xl border-x-2 font-bold font-serif text-yellow-600 drop-shadow-lg shadow-yellow-300"
+          direction="left"
+        >
+          THE FIRST HTMX C (ULFIUS) TODO APP IN HISTORY
+        </marquee>
+        <img
+          class="block h-10"
+          style="image-rendering: pixelated"
+          src="/assets/icons/coffee_set2c.gif"
+          alt="coffee"
+        />
+      </header>
+
+      <img
+        src="/assets/icons/star_separator.gif"
+        class="mx-auto"
+        alt="separator"
+      />
+
+      <main class="p-4 mt-4 mx-auto"><tmpl_var name="main_content"></main>
+
+      <footer>
+        <div
+          class="flex gap-2 flex-wrap justify-center space-x-2 p-4 mt-4 border bg-white/10 shadow-sm text-white"
+        >
+          <img
+            class="inline-block h-10"
+            style="image-rendering: pixelated"
+            src="/assets/icons/createdwith.webp"
+            alt="PROUDLY MADE WITH HTMX AND C (ULFIUS)"
+            title="PROUDLY MADE WITH HTMX AND C (ULFIUS)"
+          />
+          <img
+            class="block h-10"
+            style="image-rendering: pixelated"
+            src="/assets/icons/button.gif"
+            alt="coffee"
+          />
+          <img
+            class="block h-10"
+            style="image-rendering: pixelated"
+            src="/assets/icons/geocitieswww.gif"
+            alt="coffee"
+          />
+          <img
+            class="block h-10"
+            style="image-rendering: pixelated"
+            src="/assets/icons/worldwideweb_badge.gif"
+            alt="coffee"
+          />
+          <img
+            class="block h-10"
+            style="image-rendering: pixelated"
+            src="/assets/icons/dollarspindownd.gif"
+            alt="coffee"
+          />
+          <img
+            class="block h-10"
+            style="image-rendering: pixelated"
+            src="/assets/icons/rotating_square.gif"
+            alt="coffee"
+          />
+          <div class="flex place-content-center items-center bg-black p-2">
+            <img
+              class="h-5 w-5 mx-1"
+              src="/assets/icons/github.webp"
+              alt="source code"
+            />
+            <p>
+              <a
+                class="text-sm underline font-mono text-white"
+                href="https://github.com/mbaraa/todooo"
+                >Source code</a
+              >
+            </p>
+          </div>
+          <img
+            class="inline-block h-10"
+            style="image-rendering: pixelated"
+            src="/assets/icons/fastweb.gif"
+            alt="coffee"
+          />
+          <img
+            class="inline-block h-10"
+            style="image-rendering: pixelated"
+            src="/assets/icons/fairlite.gif"
+            alt="coffee"
+          />
+        </div>
+        <div
+          class="max-w-sm text-center mx-auto opacity-20 hover:opacity-100 transition duration-500"
+        >
+          <p
+            class="font-mono font-bold bg-[#fcfcde] px-1 border-2 border-black text-black mt-4"
+          >
+            version:
+            <a class="italic" href="https://github.com/mbaraa/todooo"><tmpl_var name="version"></a>
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

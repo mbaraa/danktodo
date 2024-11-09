@@ -1,0 +1,113 @@
+<div
+  id="container"
+  class="max-w-xl bg-[#c3c3c3] m-2 p-2 space-y-2 border-neutral-100 border-2 border-r-neutral-700 border-b-neutral-700 mx-auto"
+>
+  <button
+    hx-get="/"
+    hx-push-url="true"
+    hx-target="#container"
+    hx-swap="outerHTML"
+    class="items-center block w-max active:bg-[rgb(150,150,150)] hover:bg-[rgb(170,170,170)] active:border-neutral-700 active:border-r-neutral-100 active:border-b-neutral-100 px-2 py-1 border-2 border-neutral-100 border-r-neutral-700 border-b-neutral-700 bg-[rgb(204,204,204)] font-bold font-mono text-xs"
+  >
+    <img
+      class="inline-block h-3"
+      style="image-rendering: pixelated"
+      src="/assets/icons/back2.gif"
+      alt="coffee"
+    />
+    Return to Todos
+  </button>
+
+  <h1
+    class="text-xl text-white font-mono font-bold p-1 px-2"
+    style="background: radial-gradient(#04029b, #050369)"
+  >
+    <img
+      class="inline-block w-6 aspect-square object-center object-contain"
+      style="image-rendering: pixelated"
+      src="/assets/icons/crescentwrench.gif"
+      alt="settings icon"
+    />
+    <span class="italic"><tmpl_var name="username"></span>'s settings
+  </h1>
+
+  <div class="space-y-2">
+    <a
+      class="flex items-center gap-2 active:bg-[rgb(150,150,150)] hover:bg-[rgb(170,170,170)] px-2 py-1 border-2 border-neutral-100 border-r-neutral-700 border-b-neutral-700 active:border-neutral-700 active:border-r-neutral-100 active:border-b-neutral-100 bg-[rgb(204,204,204)] font-bold font-mono"
+      href="/api/todos/export-json"
+      hx-boost="false"
+      title="Export your todos to JSON"
+    >
+      <img
+        class="inline-block w-6 aspect-square object-center object-contain"
+        style="image-rendering: pixelated"
+        src="/assets/icons/floppy.gif"
+        alt="coffee"
+      />
+      Export to JSON
+    </a>
+    <a
+      class="flex items-center gap-2 active:bg-[rgb(150,150,150)] hover:bg-[rgb(170,170,170)] px-2 py-1 border-2 border-neutral-100 border-r-neutral-700 border-b-neutral-700 active:border-neutral-700 active:border-r-neutral-100 active:border-b-neutral-100 bg-[rgb(204,204,204)] font-bold font-mono"
+      href="/api/todos/export-csv"
+      hx-boost="false"
+      title="Export your todos to CSV"
+    >
+      <img
+        class="inline-block w-6 aspect-square object-center object-contain"
+        style="image-rendering: pixelated"
+        src="/assets/icons/Excel.gif"
+        alt="coffee"
+      />
+      Export to CSV
+    </a>
+
+    <hr class="border-t-2 border-dashed border-neutral-100" />
+
+    <button
+      class="flex items-center gap-2 w-full active:bg-[rgb(150,150,150)] hover:bg-[rgb(170,170,170)] px-2 py-1 border-2 border-neutral-100 border-r-neutral-700 border-b-neutral-700 active:border-neutral-700 active:border-r-neutral-100 active:border-b-neutral-100 bg-[rgb(204,204,204)] font-bold font-mono"
+      hx-delete="/todos/all"
+      hx-confirm="Are you sure you want to remove all your todos ? (Not implemented yet)"
+      title="Remove all todos"
+    >
+      <img
+        class="inline-block w-6 aspect-square object-center object-contain"
+        style="image-rendering: pixelated"
+        src="/assets/icons/RedX.gif"
+        alt="coffee"
+      />
+      Remove all todos
+    </button>
+    <button
+      class="flex items-center gap-2 w-full active:bg-[rgb(150,150,150)] hover:bg-[rgb(170,170,170)] px-2 py-1 border-2 border-neutral-100 border-r-neutral-700 border-b-neutral-700 active:border-neutral-700 active:border-r-neutral-100 active:border-b-neutral-100 bg-[rgb(204,204,204)] font-bold font-mono"
+      hx-delete="/api/todos/all-finished"
+      hx-confirm="Are you sure you want to remove all your finished todos ? (Not implemented yet)"
+      title="Remove all finished todos"
+    >
+      <img
+        class="inline-block w-6 aspect-square object-center object-contain"
+        style="image-rendering: pixelated"
+        src="/assets/icons/broom.gif"
+        alt="coffee"
+      />
+      Remove all finished todos
+    </button>
+    <hr class="border-t-2 border-dashed border-neutral-100" />
+
+    <button
+      type="button"
+      id="delete-account"
+      hx-confirm="Are you sure you want to delete your account ?"
+      hx-delete="/api/user/delete-me"
+      class="flex items-center gap-2 active:bg-red-600 w-full hover:bg-red-600 px-2 py-1 border-2 border-red-300 border-r-red-800 border-b-red-800 active:border-red-800 active:border-r-red-300 active:border-b-red-300 bg-red-500 font-bold font-mono text-white"
+      title="Delete account (no going back !) (Not implemented yet)"
+    >
+      <img
+        class="inline-block w-6 aspect-square object-center object-contain"
+        style="image-rendering: pixelated"
+        src="/assets/icons/trash.gif"
+        alt="trashcan"
+      />
+      Delete account (no going back !)
+    </button>
+  </div>
+</div>
