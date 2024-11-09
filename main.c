@@ -623,6 +623,11 @@ int handle_register_user(const struct _u_request *req, struct _u_response *res,
       TMPL_make_var_list(2, "login_form", buffer_data(login_form)));
 }
 
+int handle_serve_static_text(const struct _u_request *req,
+                             struct _u_response *res, void *user_data) {
+  return serve_file(req, res, "text/plain", false);
+}
+
 int handle_serve_static_js(const struct _u_request *req,
                            struct _u_response *res, void *user_data) {
   return serve_file(req, res, "application/javascript", false);
@@ -734,6 +739,8 @@ int main(void) {
   ulfius_add_endpoint_by_val(&instance, "DELETE", NULL, "/api/user/delete-me",
                              1, &handle_delete_user, NULL);
 
+  ulfius_add_endpoint_by_val(&instance, "GET", NULL, "/assets/*", 0,
+                             &handle_serve_static_text, NULL);
   ulfius_add_endpoint_by_val(&instance, "GET", NULL, "/assets/js/*", 0,
                              &handle_serve_static_js, NULL);
   ulfius_add_endpoint_by_val(&instance, "GET", NULL, "/assets/css/*", 0,

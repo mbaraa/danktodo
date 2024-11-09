@@ -4,9 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
-        C Todooo<tmpl_if name="title" value=""><tmpl_else> - <tmpl_var name="title"></tmpl_if>
+      Todooo<tmpl_if name="title" value=""><tmpl_else> - <tmpl_var
+      name="title"></tmpl_if>
     </title>
-    <link rel="shortcut icon" href="/assets/icons/favicon.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="/assets/icons/favicon.png"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/assets/icons/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/icons/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/icons/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Todooo" />
+    <link rel="manifest" href="/assets/site.webmanifest" />
+
+    <meta
+      name="description"
+      content="The First Ever HTMX C (Ulfius) Todo App in History!"
+    />
+    <meta
+      name="og:description"
+      content="The First Ever HTMX C (Ulfius) Todo App in History!"
+    />
+    <meta
+      name="og:title"
+      content='<tmpl_if name="title" value=""><tmpl_else> - <tmpl_var
+      name="title"></tmpl_if>'
+    />
+    <meta name="keywords" content="todo,todooo,c,htmx,sqlite" />
+
     <script src="/assets/js/htmx/htmx.min.js"></script>
     <script defer src="/assets/js/htmx/loading-states.js"></script>
     <link href="/assets/css/tailwind.css" rel="stylesheet" />
@@ -134,5 +171,25 @@
         </div>
       </footer>
     </div>
+
+    <script type="module">
+      function registerServiceWorkers() {
+        if (!("serviceWorker" in navigator)) {
+          console.error("Browser doesn't support service workers");
+          return;
+        }
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/assets/js/service-worker.js")
+            .then((reg) => {
+              console.log("Service Worker Registered", reg);
+            })
+            .catch((err) => {
+              console.log("Service Worker Registration failed:", err);
+            });
+        });
+      }
+      registerServiceWorkers();
+    </script>
   </body>
 </html>

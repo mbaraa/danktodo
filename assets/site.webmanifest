@@ -1,0 +1,33 @@
+{
+  "name": "Todooo",
+  "short_name": "Todooo",
+  "icons": [
+    {
+      "src": "/assets/icons/favicon.png/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/icons/favicon.png/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "start_url": "/",
+  "scope": "https://todooo.mbaraa.xyz",
+  "display": "standalone",
+  "orientation": "portrait",
+  "description": "The First Ever HTMX C (Ulfius) Todo App in History!",
+  "id": "com.mbaraa.todooo",
+  "categories": ["todo"],
+  "shortcuts": [],
+  "launch_handler": {
+    "client_mode": "auto"
+  },
+  "lang": "en",
+  "dir": "auto"
+}
