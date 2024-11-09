@@ -65,8 +65,9 @@
 
     <button
       class="flex items-center gap-2 w-full active:bg-[rgb(150,150,150)] hover:bg-[rgb(170,170,170)] px-2 py-1 border-2 border-neutral-100 border-r-neutral-700 border-b-neutral-700 active:border-neutral-700 active:border-r-neutral-100 active:border-b-neutral-100 bg-[rgb(204,204,204)] font-bold font-mono"
-      hx-delete="/todos/all"
-      hx-confirm="Are you sure you want to remove all your todos ? (Not implemented yet)"
+      hx-delete="/api/todos/all"
+      hx-swap="none"
+      hx-confirm="Are you sure you want to remove all your todos?"
       title="Remove all todos"
     >
       <img
@@ -80,7 +81,8 @@
     <button
       class="flex items-center gap-2 w-full active:bg-[rgb(150,150,150)] hover:bg-[rgb(170,170,170)] px-2 py-1 border-2 border-neutral-100 border-r-neutral-700 border-b-neutral-700 active:border-neutral-700 active:border-r-neutral-100 active:border-b-neutral-100 bg-[rgb(204,204,204)] font-bold font-mono"
       hx-delete="/api/todos/all-finished"
-      hx-confirm="Are you sure you want to remove all your finished todos ? (Not implemented yet)"
+      hx-swap="none"
+      hx-confirm="Are you sure you want to remove all your finished todos? (Not implemented yet)"
       title="Remove all finished todos"
     >
       <img
@@ -96,7 +98,7 @@
     <button
       type="button"
       id="delete-account"
-      hx-confirm="Are you sure you want to delete your account ?"
+      hx-confirm="Are you sure you want to delete your account?"
       hx-delete="/api/user/delete-me"
       class="flex items-center gap-2 active:bg-red-600 w-full hover:bg-red-600 px-2 py-1 border-2 border-red-300 border-r-red-800 border-b-red-800 active:border-red-800 active:border-r-red-300 active:border-b-red-300 bg-red-500 font-bold font-mono text-white"
       title="Delete account (no going back !) (Not implemented yet)"

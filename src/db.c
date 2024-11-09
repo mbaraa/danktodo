@@ -1,4 +1,5 @@
 #include "db.h"
+#include "models.h"
 #include "utils.h"
 
 sqlite3 *DB_INSTANCE = 0;
@@ -271,7 +272,10 @@ result *db_get_todos_for_user(int user_id, size_t *out_todos_count) {
 result *db_toggle_todo_done(int id, int user_id) {
   int rc;
   sqlite3_stmt *stmt;
-  char *sql = "UPDATE todos SET done = NOT done WHERE id = ? AND user_id = ?;";
+  char *sql = "UPDATE todos "
+              "SET done = NOT done "
+              "WHERE id = ? AND user_id = ? "
+              "RETURNING title, done, created_at;";
 
   rc = sqlite3_prepare_v2(db_get_instance(), sql, -1, &stmt, NULL);
   if (rc != SQLITE_OK) {
@@ -288,7 +292,23 @@ result *db_toggle_todo_done(int id, int user_id) {
   }
 
   rc = sqlite3_step(stmt);
-  if (rc != SQLITE_DONE) {
+  todo *t = NULL;
+  switch (rc) {
+  case SQLITE_DONE:
+    fprintf(stderr, "SQL error: %s\n", sqlite3_errmsg(db_get_instance()));
+    break;
+  case SQLITE_ROW:
+    char *title = (char *)sqlite3_column_text(stmt, 0);
+    int done = sqlite3_column_int(stmt, 1);
+    time_t created_at = sqlite3_column_int64(stmt, 2);
+
+    t = new_todo(user_id, title);
+    t->id = id;
+    t->done = (bool)done;
+    t->title = strdup(title);
+    t->created_at = created_at;
+    break;
+  default:
     fprintf(stderr, "SQL error: %s\n", sqlite3_errmsg(db_get_instance()));
     return new_result(NULL, db_map_error(DB_STATEMENT_ERROR));
   }
@@ -299,7 +319,7 @@ result *db_toggle_todo_done(int id, int user_id) {
     return new_result(NULL, db_map_error(DB_STATEMENT_ERROR));
   }
 
-  return new_result(NULL, NULL);
+  return new_result(t, NULL);
 }
 
 result *db_delete_todo(int id, int user_id) {

@@ -1,7 +1,7 @@
 <li
   tabindex="0"
   hx-trigger="click, keydown[key==' '||key=='Enter']"
-  hx-put='/api/todos/toggle?id=<tmpl_var name="todo_id">'
+  hx-put='/api/todos/<tmpl_var name="todo_id">/toggle'
   hx-swap="outerHTML"
   hx-target="this"
   id='todo-<tmpl_var name="todo_id">'
@@ -56,9 +56,9 @@
     class="mr-2 text-lg transition-all cursor-pointer hover:scale-110 active:scale-90 grow-0"
     title="Remove task"
     hx-trigger="click consume"
-    hx-delete='/api/todos?id=<tmpl_var name="todo_id">'
+    hx-delete='/api/todos/<tmpl_var name="todo_id">'
     hx-indicator="previous .todo-spinner"
-    hx-confirm='Are your sure you want to delete the task "<tmpl_var name="todo_title">" ?'
+    hx-confirm='Are your sure you want to delete the task "<tmpl_var name="todo_title">"?'
   >
     ❌
   </button>
