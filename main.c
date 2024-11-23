@@ -1,4 +1,3 @@
-#include <signal.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -16,13 +15,8 @@
 
 char *VERSION = "git-latest";
 
-static volatile int app_running = true;
-
-void sigint_handler(int _) {
-  puts("\033[31mTODOOO OUT\033[0m");
-  app_running = false;
-}
 void substr(char *s, int a, int b, char *t) { strncpy(t, s + a, b); }
+
 void init() {
   puts("Todooo init");
   result *init_result = db_init_tables();
@@ -750,11 +744,9 @@ int main(void) {
   ulfius_add_endpoint_by_val(&instance, "GET", NULL, "/assets/icons/*", 0,
                              &handle_serve_static_imgs, NULL);
 
-  signal(SIGINT, sigint_handler);
   if (ulfius_start_framework(&instance) == U_OK) {
     printf("Start framework on port %d\n", instance.port);
-    while (app_running) {
-    }
+    getchar();
   } else {
     fprintf(stderr, "Error starting framework\n");
   }
