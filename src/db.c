@@ -202,7 +202,7 @@ result *db_get_todos_for_user(int user_id, size_t *out_todos_count) {
   char *sql = "SELECT id, title, done, created_at "
               "FROM todos "
               "WHERE user_id = ? "
-              "ORDER BY created_at DESC;";
+              "ORDER BY done ASC, created_at DESC;";
 
   rc = sqlite3_prepare_v2(db_get_instance(), sql, -1, &stmt, NULL);
   if (rc != SQLITE_OK) {
