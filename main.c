@@ -227,7 +227,21 @@ int handle_delete_all_todos(const struct _u_request *req,
 
 int handle_delete_all_finished_todos(const struct _u_request *req,
                                      struct _u_response *res, void *user_data) {
-  ulfius_set_response_properties(res, U_OPT_STATUS, 501, U_OPT_NONE);
+  char *user_id_str = (char *)u_map_get(req->map_header, "user_id");
+  int user_id = user_id_str == NULL ? 0 : atoi(user_id_str);
+  if (user_id == 0) {
+    ulfius_set_string_body_response(res, 400, "Bad Request");
+    return U_CALLBACK_CONTINUE;
+  }
+
+  result *del_todo_res = db_delete_finished_todos_for_user(user_id);
+  if (result_is_error(del_todo_res)) {
+    // TODO: display error message instead
+    ulfius_set_string_body_response(res, 500, "Internal server error");
+    return U_CALLBACK_CONTINUE;
+  }
+
+  ulfius_set_response_properties(res, U_OPT_STATUS, 200, U_OPT_NONE);
   return U_CALLBACK_CONTINUE;
 }
 

@@ -393,6 +393,43 @@ result *db_delete_todos_for_user(int user_id) {
   return new_result(NULL, NULL);
 }
 
+result *db_delete_finished_todos_for_user(int user_id) {
+  if (user_id <= 0) {
+    return new_result(NULL, db_map_error(DB_NOT_FOUND));
+  }
+
+  int rc;
+  sqlite3_stmt *stmt;
+  char *sql = "DELETE FROM todos WHERE user_id=? AND done=1;";
+
+  rc = sqlite3_prepare_v2(db_get_instance(), sql, -1, &stmt, NULL);
+  if (rc != SQLITE_OK) {
+    fprintf(stderr, "SQL error: %d, error_msg: %s\n", rc,
+            sqlite3_errmsg(db_get_instance()));
+    return new_result(NULL, db_map_error(DB_STATEMENT_ERROR));
+  }
+
+  rc = sqlite3_bind_int(stmt, 1, user_id);
+  if (rc != SQLITE_OK) {
+    fprintf(stderr, "SQL error: %s\n", sqlite3_errmsg(db_get_instance()));
+    return new_result(NULL, db_map_error(DB_STATEMENT_ERROR));
+  }
+
+  rc = sqlite3_step(stmt);
+  if (rc != SQLITE_DONE) {
+    fprintf(stderr, "SQL error: %s\n", sqlite3_errmsg(db_get_instance()));
+    return new_result(NULL, db_map_error(DB_STATEMENT_ERROR));
+  }
+
+  rc = sqlite3_finalize(stmt);
+  if (rc != SQLITE_OK) {
+    fprintf(stderr, "SQL error: %s\n", sqlite3_errmsg(db_get_instance()));
+    return new_result(NULL, db_map_error(DB_STATEMENT_ERROR));
+  }
+
+  return new_result(NULL, NULL);
+}
+
 result *db_init_tables(void) {
   char *users_table = "CREATE TABLE IF NOT EXISTS users("
                       "id INTEGER PRIMARY KEY AUTOINCREMENT,"

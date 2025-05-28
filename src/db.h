@@ -29,5 +29,6 @@ result *db_get_todos_for_user(int user_id, size_t *out_todos_count);
 result *db_toggle_todo_done(int idi, int user_id);
 result *db_delete_todo(int id, int user_id);
 result *db_delete_todos_for_user(int user_id);
+result *db_delete_finished_todos_for_user(int user_id);
 
 #endif // !_DB
