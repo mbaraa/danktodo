@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
-      Todooo<tmpl_if name="title" value=""><tmpl_else> - <tmpl_var
+      DankTodo<tmpl_if name="title" value=""><tmpl_else> - <tmpl_var
       name="title"></tmpl_if>
     </title>
     <link
@@ -17,7 +17,7 @@
       sizes="180x180"
       href="/assets/icons/apple-touch-icon.png"
     />
-    <meta name="apple-mobile-web-app-title" content="Todooo" />
+    <meta name="apple-mobile-web-app-title" content="DankTodo" />
     <link rel="manifest" href="/assets/site.webmanifest" />
 
     <meta
@@ -30,10 +30,10 @@
     />
     <meta
       name="og:title"
-      content='Todooo<tmpl_if name="title" value=""><tmpl_else> - <tmpl_var
+      content='DankTodo<tmpl_if name="title" value=""><tmpl_else> - <tmpl_var
       name="title"></tmpl_if>'
     />
-    <meta name="keywords" content="todo,todooo,c,htmx,sqlite" />
+    <meta name="keywords" content="todo,danktodo,c,htmx,sqlite" />
 
     <script src="/assets/js/htmx/htmx.min.js"></script>
     <script defer src="/assets/js/htmx/loading-states.js"></script>
@@ -84,7 +84,7 @@
 
       <footer>
         <div
-          class="flex gap-2 flex-wrap justify-center space-x-2 p-4 mt-4 border bg-white/10 shadow-sm text-white"
+          class="flex gap-2 max-w-2xl mx-auto flex-wrap justify-center space-x-2 p-4 mt-4 border bg-white/10 shadow-sm text-white"
         >
           <img
             class="inline-block h-10"
@@ -93,6 +93,15 @@
             alt="PROUDLY MADE WITH HTMX AND C (ULFIUS)"
             title="PROUDLY MADE WITH HTMX AND C (ULFIUS)"
           />
+          <a href="https://dankstuff.net" target="_blank">
+		  	<img
+		  		class="inline-block h-10"
+		  		style="image-rendering: pixelated"
+		  		src="/assets/icons/dankstuffproduct.webp"
+		  		alt="A DankStuff product!"
+		  		title="A DankStuff product!"
+		  	/>
+		  </a>
           <img
             class="block h-10"
             style="image-rendering: pixelated"
@@ -123,19 +132,19 @@
             src="/assets/icons/rotating_square.gif"
             alt="coffee"
           />
-          <div class="flex place-content-center items-center bg-black p-2">
-            <img
-              class="h-5 w-5 mx-1"
-              src="/assets/icons/github.webp"
-              alt="source code"
-            />
-            <p>
-              <a
-                class="text-sm underline font-mono text-white"
-                href="https://github.com/mbaraa/todooo"
-                >Source code</a
-              >
-            </p>
+          <div class="flex place-content-center items-center bg-black !p-2">
+				<img
+					class="h-8 mx-1"
+					src="/assets/icons/github.svg"
+					alt="source code"
+					title="source code"
+				/>
+				<p>
+					<a
+						class="text-lg underline text-white"
+						href="https://github.com/mbaraa/danktodo"
+					>&nbsp;Source code</a>
+				</p>
           </div>
           <img
             class="inline-block h-10"
@@ -157,7 +166,7 @@
             class="font-mono font-bold bg-[#fcfcde] px-1 border-2 border-black text-black mt-4"
           >
             version:
-            <a class="italic" href="https://github.com/mbaraa/todooo"><tmpl_var name="version"></a>
+            <a class="italic" href="https://github.com/mbaraa/danktodo"><tmpl_var name="version"></a>
           </p>
         </div>
       </footer>

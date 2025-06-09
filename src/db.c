@@ -460,7 +460,7 @@ sqlite3 *db_get_instance(void) {
   if (DB_INSTANCE == 0) {
     char *sqlite3_file_path = getenv("SQLITE3_PATH");
     if (sqlite3_file_path == 0) {
-      sqlite3_file_path = "./todooo.db";
+      sqlite3_file_path = "./danktodo.db";
     }
 
     if (sqlite3_open(sqlite3_file_path, &DB_INSTANCE) != SQLITE_OK) {

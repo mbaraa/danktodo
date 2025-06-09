@@ -1,8 +1,8 @@
 *.o
 *.so
 .objs
-todooo
-todooo.db
+danktodo
+danktodo.db
 /assets/js/htmx/*
 /assets/css/tailwind.css
 node_modules

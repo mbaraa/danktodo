@@ -2,18 +2,19 @@
 
 const offlineFallbackPage = "/";
 
-const CACHE_NAME = "todooo-cache";
+const CACHE_NAME = "danktodo-cache";
 
 // Add whichever assets you want to pre-cache here:
-const PRECACHE_ASSETS = ["/assets/"];
+const PRECACHE_ASSETS = [ "/assets/" ];
 
-// Listener for the install event - pre-caches our assets list on service worker install.
+// Listener for the install event - pre-caches our assets list on service worker
+// install.
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    (async () => {
-      const cache = await caches.open(CACHE_NAME);
-      cache.addAll(PRECACHE_ASSETS);
-    })(),
+      (async () => {
+        const cache = await caches.open(CACHE_NAME);
+        cache.addAll(PRECACHE_ASSETS);
+      })(),
   );
 });
 
@@ -25,18 +26,18 @@ self.addEventListener("message", (event) => {
 
 self.addEventListener("install", async (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.add(offlineFallbackPage)),
+      caches.open(CACHE_NAME).then((cache) => cache.add(offlineFallbackPage)),
   );
 });
 
 self.addEventListener("fetch", (event) => {
   if (event.request.mode === "navigate") {
     event.respondWith(
-      (async () => {
-        const cache = await caches.open(CACHE_NAME);
-        const cachedResp = await cache.match(offlineFallbackPage);
-        return cachedResp;
-      })(),
+        (async () => {
+          const cache = await caches.open(CACHE_NAME);
+          const cachedResp = await cache.match(offlineFallbackPage);
+          return cachedResp;
+        })(),
     );
   }
 });

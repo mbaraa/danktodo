@@ -1,6 +1,6 @@
 <div
   id="container"
-  class="max-w-xl bg-[#c3c3c3] m-2 p-2 space-y-2 border-neutral-100 border-2 border-r-neutral-700 border-b-neutral-700 mx-auto"
+  class="max-w-2xl bg-[#c3c3c3] m-2 p-2 space-y-2 border-neutral-100 border-2 border-r-neutral-700 border-b-neutral-700 mx-auto"
 >
   <div class="upper-controls flex justify-between">
     <button
@@ -44,7 +44,7 @@
   <form
     hx-post="/api/todos"
     hx-on::after-request="this.reset()"
-    hx-target="#todooos ul"
+    hx-target="#danktodos ul"
     hx-swap="afterbegin"
     hx-indicator="#todo-add-spinner"
     class="mb-5 flex flex-col gap-2"
@@ -87,5 +87,5 @@
   </form>
 
   <!-- this element will get replaced by HTMX when we submit our form -->
-  <tmpl_var name="todooos_list">
+  <tmpl_var name="danktodos_list">
 </div>

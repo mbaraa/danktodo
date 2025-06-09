@@ -41,11 +41,11 @@ RUN wget https://nodejs.org/dist/v20.18.0/node-v20.18.0-linux-x64.tar.xz &&\
     ln -s /opt/node-v20.18.0-linux-x64/bin/npx /usr/local/bin/npx &&\
     ln -s /opt/node-v20.18.0-linux-x64/bin/npm /usr/local/bin/npm
 
-WORKDIR /app/todooo
+WORKDIR /app/danktodo
 COPY . .
 
 RUN make
 
 EXPOSE 8080
 
-CMD ["./todooo"]
+CMD ["./danktodo"]

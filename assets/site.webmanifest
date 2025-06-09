@@ -1,6 +1,6 @@
 {
-  "name": "Todooo",
-  "short_name": "Todooo",
+  "name": "DankTodo",
+  "short_name": "DankTodo",
   "icons": [
     {
       "src": "/assets/icons/web-app-manifest-192x192.png",
@@ -21,8 +21,10 @@
   "display": "standalone",
   "orientation": "portrait",
   "description": "The First Ever HTMX C (Ulfius) Todo App in History!",
-  "id": "com.mbaraa.todooo",
-  "categories": ["todo"],
+  "id": "com.mbaraa.danktodo",
+  "categories": [
+    "todo"
+  ],
   "shortcuts": [],
   "launch_handler": {
     "client_mode": "auto"

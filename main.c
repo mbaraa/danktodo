@@ -18,7 +18,7 @@ char *VERSION = "git-latest";
 void substr(char *s, int a, int b, char *t) { strncpy(t, s + a, b); }
 
 void init() {
-  puts("Todooo init");
+  puts("DankTodo init");
   result *init_result = db_init_tables();
   if (result_is_error(init_result)) {
     printf("DB INIT FAILED: %s\n", init_result->error);
@@ -34,7 +34,7 @@ void init() {
     VERSION = (char *)malloc(7);
     strncpy(VERSION, version, 7);
   }
-  puts("Todooo init done");
+  puts("DankTodo init done");
 }
 
 int handle_dingus(const struct _u_request *req, struct _u_response *res,
@@ -107,9 +107,9 @@ int handle_add_todo(const struct _u_request *req, struct _u_response *res,
   char *is_htmx = (char *)u_map_get(req->map_header, "HX-Request");
   if (is_htmx != NULL && strcmp(is_htmx, "true") == 0) {
     buffer *new_todos_item =
-        buffer_create(2560); // size of a single views/todooos_list_item.html
+        buffer_create(2560); // size of a single views/danktodos_list_item.html
     int stat = render_template_to_buffer_ref(
-        new_todos_item, "views/todooos_list_item.html",
+        new_todos_item, "views/danktodos_list_item.html",
         TMPL_make_var_list(
             6, "todo_id", itoa(((todo *)new_todo_res->value)->id), "todo_title",
             t->title, "todo_done", t->done ? "true" : "false"));
@@ -184,9 +184,9 @@ int handle_toggle_todo(const struct _u_request *req, struct _u_response *res,
   todo *t = (todo *)toggle_todo_res->value;
   if (is_htmx != NULL && strcmp(is_htmx, "true") == 0) {
     buffer *updated_todos_item =
-        buffer_create(2560); // size of a single views/todooos_list_item.html
+        buffer_create(2560); // size of a single views/danktodos_list_item.html
     int stat = render_template_to_buffer_ref(
-        updated_todos_item, "views/todooos_list_item.html",
+        updated_todos_item, "views/danktodos_list_item.html",
         TMPL_make_var_list(6, "todo_id", itoa(t->id), "todo_title", t->title,
                            "todo_done", t->done ? "true" : "false"));
 
@@ -334,7 +334,7 @@ int handle_login_user(const struct _u_request *req, struct _u_response *res,
   }
 
   long long token_age = strcmp(remember_me, "on") == 0 ? 2592000 : 3600;
-  pair jwt_payload[2] = {{"iss", "Todooo"}, {"sub", u->username}};
+  pair jwt_payload[2] = {{"iss", "DankTodo"}, {"sub", u->username}};
   result *token_result = encode_jwt(jwt_payload, time(NULL) + token_age);
   if (result_is_error(token_result)) {
     buffer *error_message =
@@ -357,10 +357,10 @@ int handle_login_user(const struct _u_request *req, struct _u_response *res,
   }
   todo *todos = (todo *)todos_result->value;
   buffer *todos_items = buffer_create(
-      2560 * todos_count); // size of a single views/todooos_list_item.html
+      2560 * todos_count); // size of a single views/danktodos_list_item.html
   for (size_t i = 0; i < todos_count; i++) {
     int stat = render_template_to_buffer_ref(
-        todos_items, "views/todooos_list_item.html",
+        todos_items, "views/danktodos_list_item.html",
         TMPL_make_var_list(6, "todo_id", itoa(todos[i].id), "todo_title",
                            todos[i].title, "todo_done",
                            todos[i].done ? "true" : "false"));
@@ -376,8 +376,8 @@ int handle_login_user(const struct _u_request *req, struct _u_response *res,
 
   buffer *todos_list = buffer_create(buffer_size(todos_items) + 1536);
   int stat = render_template_to_buffer_ref(
-      todos_list, "views/todooos_list.html",
-      TMPL_make_var_list(2, "todoooos", buffer_data(todos_items)));
+      todos_list, "views/danktodos_list.html",
+      TMPL_make_var_list(2, "danktodoos", buffer_data(todos_items)));
   if (stat != U_CALLBACK_CONTINUE) {
     free_result(token_result);
     free_result(user_result);
@@ -396,8 +396,8 @@ int handle_login_user(const struct _u_request *req, struct _u_response *res,
       U_OPT_HEADER_PARAMETER, "set-cookie", cookie, U_OPT_HEADER_PARAMETER,
       "HX-Push-Url", "/", U_OPT_COOKIE_PARAMETER, "token", token, U_OPT_NONE);
 
-  stat = render_template(req, res, "views/todooos.html",
-                         TMPL_make_var_list(4, "todooos_list",
+  stat = render_template(req, res, "views/danktodos.html",
+                         TMPL_make_var_list(4, "danktodos_list",
                                             buffer_data(todos_list), "username",
                                             u->username));
   if (stat != U_CALLBACK_CONTINUE) {
@@ -437,10 +437,10 @@ int handle_index_page(const struct _u_request *req, struct _u_response *res,
   }
   todo *todos = (todo *)todos_result->value;
   buffer *todos_items = buffer_create(
-      2560 * todos_count); // size of a single views/todooos_list_item.html
+      2560 * todos_count); // size of a single views/danktodos_list_item.html
   for (size_t i = 0; i < todos_count; i++) {
     int stat = render_template_to_buffer_ref(
-        todos_items, "views/todooos_list_item.html",
+        todos_items, "views/danktodos_list_item.html",
         TMPL_make_var_list(6, "todo_id", itoa(todos[i].id), "todo_title",
                            todos[i].title, "todo_done",
                            todos[i].done ? "true" : "false"));
@@ -454,8 +454,8 @@ int handle_index_page(const struct _u_request *req, struct _u_response *res,
 
   buffer *todos_list = buffer_create(buffer_size(todos_items) + 1536);
   int stat = render_template_to_buffer_ref(
-      todos_list, "views/todooos_list.html",
-      TMPL_make_var_list(2, "todoooos", buffer_data(todos_items)));
+      todos_list, "views/danktodos_list.html",
+      TMPL_make_var_list(2, "danktodoos", buffer_data(todos_items)));
   if (stat != U_CALLBACK_CONTINUE) {
     buffer_destroy(todos_items);
     buffer_destroy(todos_list);
@@ -466,11 +466,11 @@ int handle_index_page(const struct _u_request *req, struct _u_response *res,
   ulfius_set_response_properties(res, U_OPT_HEADER_PARAMETER, "HX-Push-Url",
                                  "/", U_OPT_NONE);
 
-  buffer *todooos = buffer_create(buffer_size(todos_list) + 4608);
+  buffer *danktodos = buffer_create(buffer_size(todos_list) + 4608);
   stat = render_template_to_buffer_ref(
-      todooos, "views/todooos.html",
-      TMPL_make_var_list(4, "todooos_list", buffer_data(todos_list), "username",
-                         username));
+      danktodos, "views/danktodos.html",
+      TMPL_make_var_list(4, "danktodos_list", buffer_data(todos_list),
+                         "username", username));
   if (stat != U_CALLBACK_CONTINUE) {
     buffer_destroy(todos_items);
     buffer_destroy(todos_list);
@@ -480,33 +480,33 @@ int handle_index_page(const struct _u_request *req, struct _u_response *res,
 
   char *is_htmx = (char *)u_map_get(req->map_header, "HX-Request");
   if (is_htmx != NULL && strcmp(is_htmx, "true") == 0) {
-    ulfius_set_response_properties(res, U_OPT_STRING_BODY, buffer_data(todooos),
-                                   U_OPT_HEADER_PARAMETER, "HX-Retarget",
-                                   "#container", U_OPT_HEADER_PARAMETER,
-                                   "HX-Push-Url", "/", U_OPT_NONE);
+    ulfius_set_response_properties(
+        res, U_OPT_STRING_BODY, buffer_data(danktodos), U_OPT_HEADER_PARAMETER,
+        "HX-Retarget", "#container", U_OPT_HEADER_PARAMETER, "HX-Push-Url", "/",
+        U_OPT_NONE);
 
     buffer_destroy(todos_items);
     buffer_destroy(todos_list);
-    buffer_destroy(todooos);
+    buffer_destroy(danktodos);
 
     return U_CALLBACK_CONTINUE;
   }
 
   stat = render_template(req, res, "views/layout.html",
                          TMPL_make_var_list(4, "main_content",
-                                            buffer_data(todooos), "version",
+                                            buffer_data(danktodos), "version",
                                             VERSION));
   if (stat != U_CALLBACK_CONTINUE) {
     buffer_destroy(todos_items);
     buffer_destroy(todos_list);
-    buffer_destroy(todooos);
+    buffer_destroy(danktodos);
     ulfius_set_string_body_response(res, 500, "Internal server error");
     return stat;
   }
 
   buffer_destroy(todos_items);
   buffer_destroy(todos_list);
-  buffer_destroy(todooos);
+  buffer_destroy(danktodos);
 
   return U_CALLBACK_CONTINUE;
 }
@@ -654,6 +654,8 @@ int handle_serve_static_imgs(const struct _u_request *req,
     return serve_file(req, res, "image/png", true);
   } else if (strstr(req->url_path, "webp")) {
     return serve_file(req, res, "image/webp", true);
+  } else if (strstr(req->url_path, "svg")) {
+    return serve_file(req, res, "image/svg+xml", true);
   } else {
     return serve_file(req, res, "image/png", true);
   }

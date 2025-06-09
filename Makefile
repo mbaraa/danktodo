@@ -8,7 +8,7 @@ CFLAGS+=-Wpointer-arith -Wcast-qual -Wsign-compare
 CFLAGS+=-lsqlite3 -lulfius -lctemplate -lcrypt -ljwt -lm
 LDFLAGS+=-lsqlite3 -lulfius -lctemplate -lcrypt -ljwt -lm
 
-BINARY_NAMR=todooo
+BINARY_NAMR=danktodo
 
 all: setup build
 
@@ -19,10 +19,10 @@ build: objects
 	$(CC) $(CFLAGS) *.o ./main.c -o $(BINARY_NAMR) $(LDFLAGS)
 
 dev: clean build tailwindcss-build
-	./todooo
+	./danktodo
 
 prod: setup build tailwindcss-build
-	./todooo
+	./danktodo
 
 setup: tailwindcss-init
 	mkdir -p assets/js/htmx &&\
