@@ -18,4 +18,6 @@ _Note: this is a fling side-project that could die anytime so don't get your hop
 
 ---
 
+A [DankStuff <img height="16" width="16" src="https://dankstuff.net/assets/favicon.ico" />](https://dankstuff.net) product!
+
 Made with 🧉 by [Baraa Al-Masri](https://mbaraa.com)
